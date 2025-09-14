@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A common library for adding slot images, rig layouts, and voices to the client")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.11.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.11+014ded206ef0e86167375409616c093c1a059723")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.11+122697c0e10da753ce6adfa41ea1852d2f0f622e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WTT-ClientCommonLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WTT-ClientCommonLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.11.0")]
