@@ -79,7 +79,7 @@ namespace WTTClientCommonLib.UI
         /// Registers a slot image embedded in an assembly resource.
         /// Can be called by other mods.
         /// </summary>
-        public static void RegisterSlotImageFromResource(Assembly assembly, string resourcePath, string slotName = null)
+        public static void RegisterSlotImageFromResource(Assembly assembly, string resourcePath, string slotID = null)
         {
             if (assembly == null || string.IsNullOrWhiteSpace(resourcePath))
             {
@@ -100,7 +100,7 @@ namespace WTTClientCommonLib.UI
                 stream.CopyTo(ms);
                 byte[] imageData = ms.ToArray();
 
-                CreateAndRegister(imageData, slotName ?? Path.GetFileNameWithoutExtension(resourcePath));
+                CreateAndRegister(imageData, slotID ?? Path.GetFileNameWithoutExtension(resourcePath));
             }
             catch (Exception ex)
             {
@@ -111,14 +111,14 @@ namespace WTTClientCommonLib.UI
         /// <summary>
         /// Creates a sprite from raw image data and registers it in EFT's resources.
         /// </summary>
-        private static void CreateAndRegister(byte[] data, string slotName)
+        private static void CreateAndRegister(byte[] data, string slotID)
         {
             try
             {
-                if (SlotEntries.ContainsKey(slotName))
+                if (SlotEntries.ContainsKey(slotID))
                 {
 #if DEBUG
-                    Console.WriteLine($"[WTT-ClientCommonLib] Skipped duplicate slot key: {slotName}");
+                    Console.WriteLine($"[WTT-ClientCommonLib] Skipped duplicate slot key: {slotID}");
 #endif
                     return;
                 }
@@ -126,7 +126,7 @@ namespace WTTClientCommonLib.UI
                 Texture2D texture = new Texture2D(2, 2);
                 if (!texture.LoadImage(data))
                 {
-                    Console.WriteLine($"[WTT-ClientCommonLib] Failed to create texture for {slotName}");
+                    Console.WriteLine($"[WTT-ClientCommonLib] Failed to create texture for {slotID}");
                     return;
                 }
 
@@ -137,10 +137,10 @@ namespace WTTClientCommonLib.UI
                     100f
                 );
 
-                SlotEntries[slotName] = sprite;
-                ResourceHelper.AddEntry($"Slots/{slotName}", sprite);
+                SlotEntries[slotID] = sprite;
+                ResourceHelper.AddEntry($"Slots/{slotID}", sprite);
 #if DEBUG
-                Console.WriteLine($"[WTT-ClientCommonLib] Added slot sprite: {slotName}");
+                Console.WriteLine($"[WTT-ClientCommonLib] Added slot sprite: {slotID}");
 #endif
             }
             catch (Exception ex)
