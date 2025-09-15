@@ -56,7 +56,7 @@ namespace WTTClientCommonLib.UI
         /// Can be called by other mods.
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
-        public static void RegisterSlotImage(string imagePath, string slotName = null)
+        public static void RegisterSlotImage(string imagePath, string slotID = null)
         {
             if (string.IsNullOrWhiteSpace(imagePath) || !File.Exists(imagePath))
             {
@@ -67,7 +67,7 @@ namespace WTTClientCommonLib.UI
             try
             {
                 byte[] imageData = File.ReadAllBytes(imagePath);
-                CreateAndRegister(imageData, slotName ?? Path.GetFileNameWithoutExtension(imagePath));
+                CreateAndRegister(imageData, slotID ?? Path.GetFileNameWithoutExtension(imagePath));
             }
             catch (Exception ex)
             {
